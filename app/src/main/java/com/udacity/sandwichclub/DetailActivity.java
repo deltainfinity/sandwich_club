@@ -62,11 +62,13 @@ public class DetailActivity extends AppCompatActivity {
 
     private void populateUI(Sandwich sandwich) {
 
+        //get references to the TextViews
         TextView originTextView = findViewById(R.id.origin_tv);
         TextView descriptionTextView = findViewById(R.id.description_tv);
         TextView ingredientsTextView =  findViewById(R.id.ingredients_tv);
         TextView akaTextView = findViewById(R.id.also_known_tv);
 
+        //populate the TextViews with the sandwich values
         originTextView.setText(sandwich.getPlaceOfOrigin());
         descriptionTextView.setText(sandwich.getDescription());
         List<String> ingredients = sandwich.getIngredients();
