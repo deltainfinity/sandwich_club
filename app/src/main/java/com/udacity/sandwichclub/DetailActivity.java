@@ -4,11 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -43,7 +47,7 @@ public class DetailActivity extends AppCompatActivity {
             return;
         }
 
-        populateUI();
+        populateUI(sandwich);
         Picasso.with(this)
                 .load(sandwich.getImage())
                 .into(ingredientsIv);
@@ -56,7 +60,35 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.detail_error_message, Toast.LENGTH_SHORT).show();
     }
 
-    private void populateUI() {
+    private void populateUI(Sandwich sandwich) {
 
+        TextView originTextView = findViewById(R.id.origin_tv);
+        TextView descriptionTextView = findViewById(R.id.description_tv);
+        TextView ingredientsTextView =  findViewById(R.id.ingredients_tv);
+        TextView akaTextView = findViewById(R.id.also_known_tv);
+
+        originTextView.setText(sandwich.getPlaceOfOrigin());
+        descriptionTextView.setText(sandwich.getDescription());
+        List<String> ingredients = sandwich.getIngredients();
+        String formattedIngredients = arrayToString(ingredients);
+        ingredientsTextView.setText(formattedIngredients);
+        List<String> aka = sandwich.getAlsoKnownAs();
+        String formattedAKA = arrayToString(aka);
+        akaTextView.setText(formattedAKA);
+    }
+
+    private String arrayToString(List<String> stringList)
+    {
+        StringBuilder sb = new StringBuilder();
+        int lastIndex = stringList.size() - 1;
+        for (int i = 0; i < lastIndex; i++)
+        {
+            sb.append(stringList.get(i) + "\n");
+        }
+        if(stringList.size() > 0)
+        {
+            sb.append(stringList.get(lastIndex));
+        }
+        return sb.toString();
     }
 }
