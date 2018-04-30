@@ -3,16 +3,12 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
@@ -86,7 +82,8 @@ public class DetailActivity extends AppCompatActivity {
         int lastIndex = stringList.size() - 1;
         for (int i = 0; i < lastIndex; i++)
         {
-            sb.append(stringList.get(i) + "\n");
+            sb.append(stringList.get(i));
+            sb.append("\n");
         }
         if(stringList.size() > 0)
         {
